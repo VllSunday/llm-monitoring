@@ -70,17 +70,16 @@ async function loadOverview() {
   const latency = data.latency || {};
   const alertClass = data.alert && data.alert.firing ? 'bad' : 'ok';
   html('overview-cards', [
-    kpi('запросов', data.requests),
     kpi('p50', `${Charts.fmt(latency.p50 || 0)} ms`),
     kpi('p95', `${Charts.fmt(latency.p95 || 0)} ms`, '', alertClass),
     kpi('p99', `${Charts.fmt(latency.p99 || 0)} ms`, '', alertClass),
-    kpi('стоимость', money(data.total_cost_usd, 4),
+    kpi('Стоимость', money(data.total_cost_usd, 4),
       `${data.tokens.input} in / ${data.tokens.output} out`),
-    kpi('галлюцинации', data.hallucination_rate === null || data.hallucination_rate === undefined
+    kpi('Галлюцинации', data.hallucination_rate === null || data.hallucination_rate === undefined
       ? 'нет данных'
       : `${(data.hallucination_rate * 100).toFixed(1)}%`, 'eval dataset',
       data.hallucination_rate > 0.05 ? 'bad' : 'ok'),
-    kpi('дрейф', data.drift_status || 'нет данных', 'baseline vs production',
+    kpi('Дрейф', data.drift_status || 'нет данных', 'baseline vs production',
       statusClass(data.drift_status)),
   ].join(''));
 
@@ -128,12 +127,12 @@ async function loadLatency() {
   state.reports.latency = report;
   const base = report.baseline;
   html('latency-cards', [
-    kpi('запросов', base.count),
-    kpi('average', `${Charts.fmt(base.avg)} ms`),
+    kpi('Запросов', base.count),
+    kpi('Среднее', `${Charts.fmt(base.avg)} ms`),
     kpi('p50', `${Charts.fmt(base.p50)} ms`),
     kpi('p95', `${Charts.fmt(base.p95)} ms`),
     kpi('p99', `${Charts.fmt(base.p99)} ms`),
-    kpi('min / max', `${Charts.fmt(base.min)} / ${Charts.fmt(base.max)}`, 'ms'),
+    kpi('Мин / макс', `${Charts.fmt(base.min)} / ${Charts.fmt(base.max)}`, 'ms'),
   ].join(''));
 
   Charts.histogram(document.getElementById('latency-hist'), {
@@ -174,7 +173,8 @@ async function loadLatency() {
     </p>
     <p class="hint">Самый медленный этап: <span class="mono">${escape(report.slowest_stage)}</span>
       (${report.stages[0].avg_ms} ms, ${(report.stages[0].share * 100).toFixed(1)}% времени).</p>
-    <p class="hint">Метрики для прода: ${report.production_metrics.map((m) => `<span class="badge muted">${escape(m)}</span>`).join(' ')}</p>
+    <p class="hint">Метрики для прода</p>
+    <div class="tags">${report.production_metrics.map((m) => `<span class="badge muted">${escape(m)}</span>`).join('')}</div>
   `);
 }
 
@@ -190,9 +190,9 @@ function renderCalculator(prices) {
     html('calc-result', [
       kpi('1 запрос', money(perRequest, 6)),
       kpi('1 000 запросов', money(perRequest * 1000, 3)),
-      kpi('день', money(perRequest * perDay, 2)),
-      kpi('месяц', money(perRequest * perDay * 30, 2)),
-      kpi('доля output', share ? `${((outputShare / share) * 100).toFixed(0)}%` : '0%',
+      kpi('День', money(perRequest * perDay, 2)),
+      kpi('Месяц', money(perRequest * perDay * 30, 2)),
+      kpi('Доля output', share ? `${((outputShare / share) * 100).toFixed(0)}%` : '0%',
         'в стоимости запроса'),
     ].join(''));
   };
@@ -288,14 +288,14 @@ async function loadDrift() {
   const features = Object.fromEntries(report.drift.features.map((f) => [f.feature, f]));
 
   html('drift-cards', [
-    kpi('статус', report.drift.status, 'baseline vs production', statusClass(report.drift.status)),
+    kpi('Статус', report.drift.status, 'baseline vs production', statusClass(report.drift.status)),
     kpi('PSI язык', features.language.psi, features.language.status,
       statusClass(features.language.status)),
     kpi('PSI тема', features.topic.psi, features.topic.status, statusClass(features.topic.status)),
-    kpi('длина запроса', `${features.query_length_tokens.production_mean} tok`,
+    kpi('Длина запроса', `${features.query_length_tokens.production_mean} tok`,
       `${features.query_length_tokens.delta_pct > 0 ? '+' : ''}${features.query_length_tokens.delta_pct}% к baseline`,
       statusClass(features.query_length_tokens.status)),
-    kpi('живой трафик', report.live_traffic ? report.live_traffic.status : 'нет данных',
+    kpi('Живой трафик', report.live_traffic ? report.live_traffic.status : 'нет данных',
       report.live_traffic ? `${report.live_traffic.sample_size} запросов` : '',
       statusClass(report.live_traffic && report.live_traffic.status)),
   ].join(''));
@@ -340,8 +340,9 @@ async function loadDrift() {
         <ul>${item.metrics_to_check.map((m) => `<li>${escape(m)}</li>`).join('')}</ul>
         <p class="mono">подтвердится, если ${escape(item.confirms_if)}</p>
       </div>`).join('')}</div>
-    <p class="hint">Что проверяю первым делом: ${incident.priority_checks
-      .map((check) => `<span class="badge muted">${escape(check)}</span>`).join(' ')}</p>
+    <p class="hint">Что проверяю первым делом</p>
+    <div class="tags">${incident.priority_checks
+      .map((check) => `<span class="badge muted">${escape(check)}</span>`).join('')}</div>
   `);
 }
 
@@ -355,13 +356,13 @@ async function loadEval() {
   const summary = report.summary;
 
   html('eval-cards', [
-    kpi('вопросов', summary.total),
+    kpi('Вопросов', summary.total),
     kpi('hallucination rate', `${(summary.hallucination_rate * 100).toFixed(1)}%`, '',
       summary.hallucination_rate > 0.05 ? 'bad' : 'ok'),
-    kpi('средний score', summary.avg_score),
-    kpi('отказов', `${(summary.abstain_rate * 100).toFixed(1)}%`, 'ответ вида нет данных'),
+    kpi('Средний score', summary.avg_score),
+    kpi('Отказов', `${(summary.abstain_rate * 100).toFixed(1)}%`, 'ответ вида нет данных'),
     kpi('accuracy@0.6', `${(summary.accuracy_at_06 * 100).toFixed(0)}%`, 'score не ниже 0.6'),
-    kpi('утверждений', Object.values(summary.claim_counts).reduce((a, b) => a + b, 0),
+    kpi('Утверждений', Object.values(summary.claim_counts).reduce((a, b) => a + b, 0),
       `${(summary.claim_shares.SUPPORTED * 100).toFixed(0)}% подтверждено`),
   ].join(''));
 
@@ -436,11 +437,11 @@ async function sendPrompt() {
     answer.textContent = record.response;
     html('answer-metrics', [
       kpi('latency', `${Charts.fmt(record.latency_ms)} ms`),
-      kpi('токены', `${record.input_tokens}/${record.output_tokens}`, 'in/out'),
-      kpi('стоимость', money(record.cost_usd, 6)),
-      kpi('язык', record.language),
-      kpi('тема', record.topic),
-      kpi('вызовов', record.calls),
+      kpi('Токены', `${record.input_tokens}/${record.output_tokens}`, 'in/out'),
+      kpi('Стоимость', money(record.cost_usd, 6)),
+      kpi('Язык', record.language),
+      kpi('Тема', record.topic),
+      kpi('Вызовов', record.calls),
     ].join(''));
     const stages = Object.entries(record.stages).sort((a, b) => b[1] - a[1]);
     Charts.horizontal(document.getElementById('answer-stages'), {
@@ -450,8 +451,9 @@ async function sendPrompt() {
       xLabel: 'ms',
     });
     html('answer-context', record.retrieved.length
-      ? `<p class="hint">Контекст: ${record.retrieved
-          .map((c) => `<span class="badge muted">${escape(c.id)} · ${escape(c.title)}</span>`).join(' ')}</p>`
+      ? `<p class="hint">Контекст из базы знаний</p>
+         <div class="tags">${record.retrieved
+          .map((c) => `<span class="badge muted">${escape(c.id)} · ${escape(c.title)}</span>`).join('')}</div>`
       : '');
     loadOverview().catch(() => {});
     loadHealth().catch(() => {});

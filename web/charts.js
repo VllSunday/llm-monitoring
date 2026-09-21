@@ -1,14 +1,15 @@
 // Лёгкие SVG-графики, чтобы дашборд работал без внешних библиотек
 const Charts = (() => {
   const NS = 'http://www.w3.org/2000/svg';
+  // Палитра chart-1..chart-5 из shadcn/ui, тёмная тема
   const COLORS = {
-    accent: '#4ade80',
-    blue: '#38bdf8',
-    warn: '#fbbf24',
-    danger: '#f87171',
-    violet: '#a78bfa',
-    line: '#242b35',
-    muted: '#8b949e',
+    accent: '#2eb88a',
+    blue: '#2662d9',
+    warn: '#e88c30',
+    danger: '#ef4444',
+    violet: '#af57db',
+    line: '#27272a',
+    muted: '#a1a1aa',
   };
   const W = 640, H = 280;
   const PAD = { top: 18, right: 18, bottom: 44, left: 56 };
