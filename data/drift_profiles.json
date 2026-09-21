@@ -1,0 +1,38 @@
+{
+  "baseline": {
+    "language": {
+      "en": 0.7,
+      "ru": 0.2,
+      "kz": 0.1
+    },
+    "topic": {
+      "faq": 0.45,
+      "support": 0.3,
+      "research": 0.25
+    },
+    "query_length_tokens": 42
+  },
+  "production": {
+    "language": {
+      "en": 0.45,
+      "ru": 0.4,
+      "kz": 0.15
+    },
+    "topic": {
+      "faq": 0.2,
+      "support": 0.5,
+      "research": 0.3
+    },
+    "query_length_tokens": 118
+  },
+  "quality_incident": {
+    "production_quality": {
+      "before": 0.91,
+      "after": 0.82
+    },
+    "golden_dataset_quality": {
+      "before": 0.91,
+      "after": 0.9
+    }
+  }
+}
