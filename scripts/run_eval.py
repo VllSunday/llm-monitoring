@@ -141,6 +141,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="CASE 4: hallucinations")
     parser.add_argument("--num-predict", type=int, default=200)
     parser.add_argument("--limit", type=int, default=0, help="ограничить число вопросов")
+    parser.add_argument("--recalc", action="store_true",
+                        help="не вызывать модель, пересобрать метрики и графики по eval_results.json")
     args = parser.parse_args()
 
     storage.init_db()
@@ -149,7 +151,11 @@ def main() -> None:
     if args.limit:
         items = items[:args.limit]
 
-    results = run_dataset(items, args.num_predict)
+    if args.recalc:
+        with open(REPORTS_DIR / "eval_results.json", encoding="utf-8") as fh:
+            results = json.load(fh)["results"]
+    else:
+        results = run_dataset(items, args.num_predict)
     summary = evaluation.aggregate(results)
 
     report = {

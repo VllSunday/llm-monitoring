@@ -161,8 +161,8 @@ def main() -> None:
     sampled_production = sample_from_distribution(production["language"], args.sample, seed=2)
     sampled = drift.categorical_report(
         "language_sampled",
-        {k: sampled_baseline.count(k) for k in set(sampled_baseline)},
-        {k: sampled_production.count(k) for k in set(sampled_production)},
+        {k: sampled_baseline.count(k) for k in sorted(set(sampled_baseline))},
+        {k: sampled_production.count(k) for k in sorted(set(sampled_production))},
     )
 
     result = {

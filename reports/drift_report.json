@@ -101,12 +101,12 @@
     "total_variation": 0.2595,
     "baseline": {
       "en": 0.7005,
-      "ru": 0.2005,
-      "kz": 0.099
+      "kz": 0.099,
+      "ru": 0.2005
     },
     "production": {
-      "kz": 0.14,
       "en": 0.441,
+      "kz": 0.14,
       "ru": 0.419
     },
     "shift_pp": {
