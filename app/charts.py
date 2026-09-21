@@ -6,16 +6,17 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-BG = "#0e1116"
-PANEL = "#151a21"
-GRID = "#242b35"
-TEXT = "#e6e9ee"
-MUTED = "#8b949e"
-ACCENT = "#4ade80"
-ACCENT_2 = "#38bdf8"
-WARN = "#fbbf24"
-DANGER = "#f87171"
-VIOLET = "#a78bfa"
+# Цвета совпадают с дашбордом: тема zinc и палитра chart-1..chart-5 из shadcn/ui
+BG = "#09090b"
+PANEL = "#09090b"
+GRID = "#27272a"
+TEXT = "#fafafa"
+MUTED = "#a1a1aa"
+ACCENT = "#2eb88a"
+ACCENT_2 = "#2662d9"
+WARN = "#e88c30"
+DANGER = "#ef4444"
+VIOLET = "#af57db"
 
 PALETTE = [ACCENT, ACCENT_2, VIOLET, WARN, DANGER, "#f472b6"]
 
