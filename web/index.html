@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Monitoring</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%230e1116'/><path d='M3 11l3-4 3 2 4-6' stroke='%234ade80' fill='none' stroke-width='1.6'/></svg>">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo"></span>
+    <div>
+      <h1>LLM Monitoring</h1>
+      <p class="sub">latency · cost · drift · hallucinations</p>
+    </div>
+  </div>
+  <div class="status" id="status">
+    <span class="dot" id="status-dot"></span>
+    <span id="status-text">проверяю рантайм</span>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="overview">Обзор</button>
+  <button class="tab" data-tab="playground">Playground</button>
+  <button class="tab" data-tab="latency">Latency</button>
+  <button class="tab" data-tab="cost">Cost</button>
+  <button class="tab" data-tab="drift">Drift</button>
+  <button class="tab" data-tab="hallucinations">Hallucinations</button>
+</nav>
+
+<main>
+  <section class="panel-group active" id="tab-overview">
+    <div class="cards" id="overview-cards"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Этапы пайплайна</h2>
+        <div id="overview-stages" class="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Трафик по эндпоинтам</h2>
+        <div id="overview-endpoints" class="chart"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Последние запросы</h2>
+      <div class="table-wrap" id="overview-table"></div>
+    </div>
+  </section>
+
+  <section class="panel-group" id="tab-playground">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Запрос к модели</h2>
+        <textarea id="prompt" rows="6" placeholder="Например: какие лимиты действуют на аккаунт?"></textarea>
+        <div class="controls">
+          <label>Эндпоинт
+            <select id="endpoint">
+              <option value="chat">chat</option>
+              <option value="rag">rag</option>
+              <option value="summary">summary</option>
+              <option value="agent">agent</option>
+            </select>
+          </label>
+          <label>max tokens
+            <input type="number" id="num-predict" value="160" min="16" max="1024" step="16">
+          </label>
+          <button id="send" class="primary">Отправить</button>
+        </div>
+        <p class="hint">Каждый запрос пишется в телеметрию вместе с таймингами этапов.</p>
+      </div>
+      <div class="card">
+        <h2>Ответ</h2>
+        <div id="answer" class="answer empty">Ответа ещё нет</div>
+        <div class="cards small" id="answer-metrics"></div>
+        <div id="answer-stages" class="chart"></div>
+        <div id="answer-context"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-group" id="tab-latency">
+    <div class="cards" id="latency-cards"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Распределение latency</h2>
+        <div id="latency-hist" class="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Этапы пайплайна</h2>
+        <div id="latency-stages" class="chart"></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Эффект медленных запросов</h2>
+        <div class="table-wrap" id="latency-compare"></div>
+      </div>
+      <div class="card">
+        <h2>Правило алерта</h2>
+        <div id="latency-alert"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-group" id="tab-cost">
+    <div class="card">
+      <h2>Калькулятор стоимости</h2>
+      <div class="controls">
+        <label>input tokens<input type="number" id="calc-input" value="700" min="0" step="50"></label>
+        <label>output tokens<input type="number" id="calc-output" value="150" min="0" step="50"></label>
+        <label>запросов в день<input type="number" id="calc-rpd" value="10000" min="1" step="500"></label>
+        <label>вызовов на запрос<input type="number" id="calc-calls" value="1" min="1" max="10" step="1"></label>
+      </div>
+      <div class="cards small" id="calc-result"></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Контекст и стоимость</h2>
+        <div id="cost-context-cost" class="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Контекст и latency</h2>
+        <div id="cost-context-latency" class="chart"></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Стоимость эндпоинтов</h2>
+        <div id="cost-endpoints" class="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Cost leak</h2>
+        <div id="cost-leak"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Как снижать счёт</h2>
+      <div class="table-wrap" id="cost-optimizations"></div>
+    </div>
+  </section>
+
+  <section class="panel-group" id="tab-drift">
+    <div class="cards" id="drift-cards"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Языки</h2>
+        <div id="drift-language" class="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Темы</h2>
+        <div id="drift-topic" class="chart"></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>PSI по признакам</h2>
+        <div id="drift-psi" class="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Пороги</h2>
+        <div id="drift-thresholds"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Инцидент: прод 91 → 82, golden 91 → 90</h2>
+      <div id="drift-incident"></div>
+    </div>
+  </section>
+
+  <section class="panel-group" id="tab-hallucinations">
+    <div class="cards" id="eval-cards"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Разметка утверждений</h2>
+        <div id="eval-claims" class="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Галлюцинации по типам вопросов</h2>
+        <div id="eval-types" class="chart"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Результаты прогона</h2>
+      <div class="table-wrap" id="eval-table"></div>
+    </div>
+    <div class="card">
+      <h2>Инцидент: hallucination 3 → 9 процентов</h2>
+      <div id="eval-incident"></div>
+    </div>
+  </section>
+</main>
+
+<script src="/static/charts.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
