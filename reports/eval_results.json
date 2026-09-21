@@ -1,0 +1,796 @@
+{
+  "summary": {
+    "total": 22,
+    "hallucination_rate": 0.182,
+    "abstain_rate": 0.136,
+    "avg_score": 0.659,
+    "accuracy_at_06": 0.545,
+    "claim_counts": {
+      "SUPPORTED": 14,
+      "PARTIALLY_SUPPORTED": 7,
+      "UNSUPPORTED": 5,
+      "CONTRADICTED": 1
+    },
+    "claim_shares": {
+      "SUPPORTED": 0.519,
+      "PARTIALLY_SUPPORTED": 0.259,
+      "UNSUPPORTED": 0.185,
+      "CONTRADICTED": 0.037
+    },
+    "by_question_type": {
+      "comparison": {
+        "total": 2,
+        "hallucinated": 1,
+        "hallucination_rate": 0.5,
+        "avg_score": 0.25
+      },
+      "out_of_scope": {
+        "total": 3,
+        "hallucinated": 1,
+        "hallucination_rate": 0.333,
+        "avg_score": 0.667
+      },
+      "factual": {
+        "total": 7,
+        "hallucinated": 1,
+        "hallucination_rate": 0.143,
+        "avg_score": 0.643
+      },
+      "numeric": {
+        "total": 8,
+        "hallucinated": 1,
+        "hallucination_rate": 0.125,
+        "avg_score": 0.688
+      },
+      "procedural": {
+        "total": 2,
+        "hallucinated": 0,
+        "hallucination_rate": 0.0,
+        "avg_score": 1.0
+      }
+    }
+  },
+  "results": [
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Базовый тариф включает 100000 запросов в месяц.",
+          "label": "SUPPORTED",
+          "overlap": 1.0,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q01",
+      "question": "Сколько запросов в месяц включено в базовый тариф?",
+      "question_type": "factual",
+      "reference_answer": "Базовый тариф включает 100000 запросов в месяц, превышение тарифицируется отдельно.",
+      "model_answer": "Базовый тариф включает 100000 запросов в месяц.",
+      "latency_ms": 2383.064,
+      "input_tokens": 272,
+      "output_tokens": 18,
+      "request_id": "e9e4be1b285a"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Стоимость миллиона входных токенов составляет 2 доллара.",
+          "label": "SUPPORTED",
+          "overlap": 0.667,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q02",
+      "question": "Сколько стоит миллион входных токенов?",
+      "question_type": "numeric",
+      "reference_answer": "Миллион входных токенов стоит 2 доллара, миллион выходных токенов стоит 8 долларов.",
+      "model_answer": "Стоимость миллиона входных токенов составляет 2 доллара.",
+      "latency_ms": 2201.374,
+      "input_tokens": 229,
+      "output_tokens": 18,
+      "request_id": "eb0996973e01"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "60 запросов в минуту.",
+          "label": "SUPPORTED",
+          "overlap": 1.0,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q03",
+      "question": "Какой лимит запросов в минуту на аккаунт?",
+      "question_type": "numeric",
+      "reference_answer": "Лимит на аккаунт 60 запросов в минуту и 200000 токенов в минуту.",
+      "model_answer": "60 запросов в минуту.",
+      "latency_ms": 2158.595,
+      "input_tokens": 288,
+      "output_tokens": 8,
+      "request_id": "01260701c0e8"
+    },
+    {
+      "score": 0.5,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Код ошибки 429 означает, что вы превысили лимит на аккаунт (60 запросов в минуту или 200000 токенов в минуту).",
+          "label": "PARTIALLY_SUPPORTED",
+          "overlap": 0.5,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 1,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q04",
+      "question": "Что означает код ошибки 429?",
+      "question_type": "factual",
+      "reference_answer": "Код 429 означает превышение лимита запросов, повторять нужно с экспоненциальной задержкой.",
+      "model_answer": "Код ошибки 429 означает, что вы превысили лимит на аккаунт (60 запросов в минуту или 200000 токенов в минуту).",
+      "latency_ms": 2397.498,
+      "input_tokens": 221,
+      "output_tokens": 43,
+      "request_id": "94e188c64fe1"
+    },
+    {
+      "score": 0.5,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Код 504 в API означает таймаут модели, то есть API не смог ответить в течение установленного времени (30 секунд по умолчанию).",
+          "label": "PARTIALLY_SUPPORTED",
+          "overlap": 0.5,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 1,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q05",
+      "question": "Что значит код 504 в API?",
+      "question_type": "factual",
+      "reference_answer": "Код 504 означает таймаут модели, таймаут по умолчанию 30 секунд.",
+      "model_answer": "Код 504 в API означает таймаут модели, то есть API не смог ответить в течение установленного времени (30 секунд по умолчанию).",
+      "latency_ms": 2362.171,
+      "input_tokens": 292,
+      "output_tokens": 37,
+      "request_id": "e25e339755a1"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Промпты и ответы хранятся 30 дней в зашифрованном виде, затем удаляются.",
+          "label": "SUPPORTED",
+          "overlap": 0.75,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q06",
+      "question": "Сколько дней хранятся промпты и ответы?",
+      "question_type": "numeric",
+      "reference_answer": "Промпты и ответы хранятся 30 дней в зашифрованном виде, логи телеметрии хранятся 180 дней.",
+      "model_answer": "Промпты и ответы хранятся 30 дней в зашифрованном виде, затем удаляются.",
+      "latency_ms": 2290.763,
+      "input_tokens": 239,
+      "output_tokens": 26,
+      "request_id": "58eb7907c54b"
+    },
+    {
+      "score": 0.5,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "According to [kb-05], the target p95 for the chat endpoint is under 3500 ms.",
+          "label": "PARTIALLY_SUPPORTED",
+          "overlap": 0.429,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 1,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q07",
+      "question": "Какой целевой p95 у chat эндпоинта?",
+      "question_type": "numeric",
+      "reference_answer": "Целевой p95 для chat эндпоинта не выше 3500 мс, целевой p50 не выше 800 мс.",
+      "model_answer": "According to [kb-05], the target p95 for the chat endpoint is under 3500 ms.",
+      "latency_ms": 2246.363,
+      "input_tokens": 190,
+      "output_tokens": 23,
+      "request_id": "917eb94504c2"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Клиент повторяет неудачный запрос максимум 3 раза, интервалы 1, 4 и 10 секунд.",
+          "label": "SUPPORTED",
+          "overlap": 0.875,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q08",
+      "question": "Сколько раз клиент повторяет неудачный запрос и с какими интервалами?",
+      "question_type": "procedural",
+      "reference_answer": "Клиент повторяет запрос максимум 3 раза с интервалами 1, 4 и 10 секунд, для ошибок 400 и 401 повторов нет.",
+      "model_answer": "Клиент повторяет неудачный запрос максимум 3 раза, интервалы 1, 4 и 10 секунд.",
+      "latency_ms": 2331.142,
+      "input_tokens": 251,
+      "output_tokens": 31,
+      "request_id": "889a04267e74"
+    },
+    {
+      "score": 0.25,
+      "hallucination": true,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Нет, streaming не уменьшает полное время генерации.",
+          "label": "SUPPORTED",
+          "overlap": 0.833,
+          "numeric_conflict": false
+        },
+        {
+          "claim": "Он снижает воспринимаемую задержку, но не влияет на общее время генерации, как указано в [kb-07].",
+          "label": "CONTRADICTED",
+          "overlap": 0.625,
+          "numeric_conflict": true
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 1
+      },
+      "unsupported_share": 0.5,
+      "id": "q09",
+      "question": "Уменьшает ли streaming полное время генерации?",
+      "question_type": "factual",
+      "reference_answer": "Streaming не уменьшает полное время генерации, он снижает воспринимаемую задержку за счёт первого токена примерно за 400 мс.",
+      "model_answer": "Нет, streaming не уменьшает полное время генерации. Он снижает воспринимаемую задержку, но не влияет на общее время генерации, как указано в [kb-07].",
+      "latency_ms": 2458.826,
+      "input_tokens": 147,
+      "output_tokens": 52,
+      "request_id": "8206f37341d6"
+    },
+    {
+      "score": 0.0,
+      "hallucination": true,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "According to our knowledge base, the TTL (Time To Live) for the cache of answers is 24 hours.",
+          "label": "UNSUPPORTED",
+          "overlap": 0.1,
+          "numeric_conflict": false
+        },
+        {
+          "claim": "Additionally, the hit rate for FAQ traffic is approximately 35%.",
+          "label": "UNSUPPORTED",
+          "overlap": 0.143,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 2,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 1.0,
+      "id": "q10",
+      "question": "Какой TTL у кэша ответов и какой hit rate на FAQ трафике?",
+      "question_type": "numeric",
+      "reference_answer": "TTL кэша 24 часа, попадание в кэш на FAQ трафике около 35 процентов.",
+      "model_answer": "According to our knowledge base, the TTL (Time To Live) for the cache of answers is 24 hours. Additionally, the hit rate for FAQ traffic is approximately 35%.",
+      "latency_ms": 2370.426,
+      "input_tokens": 258,
+      "output_tokens": 37,
+      "request_id": "57f15df82ed6"
+    },
+    {
+      "score": 0.0,
+      "hallucination": false,
+      "abstained": true,
+      "claims": [
+        {
+          "claim": "К сожалению, в контексте из базы знаний нет информации о размере контекстного окна у модели.",
+          "label": "UNSUPPORTED",
+          "overlap": 0.2,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 1,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 1.0,
+      "id": "q11",
+      "question": "Какой размер контекстного окна у модели?",
+      "question_type": "numeric",
+      "reference_answer": "Контекстное окно составляет 8192 токена, при превышении обрезаются самые старые сообщения диалога.",
+      "model_answer": "К сожалению, в контексте из базы знаний нет информации о размере контекстного окна у модели.",
+      "latency_ms": 2294.968,
+      "input_tokens": 159,
+      "output_tokens": 30,
+      "request_id": "6c3b6a669918"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Для подключения к API вам нужно иметь ключ из личного кабинета, заголовок Authorization и использовать версию API v1.",
+          "label": "SUPPORTED",
+          "overlap": 0.615,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q12",
+      "question": "Что нужно для подключения к API?",
+      "question_type": "procedural",
+      "reference_answer": "Нужен ключ из личного кабинета, заголовок Authorization и версия API v1, песочница бесплатна 14 дней.",
+      "model_answer": "Для подключения к API вам нужно иметь ключ из личного кабинета, заголовок Authorization и использовать версию API v1.",
+      "latency_ms": 2301.225,
+      "input_tokens": 246,
+      "output_tokens": 29,
+      "request_id": "13c9602e2602"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "В ответе на ваш вопрос: ежедневно отслеживаются hallucination rate, retrieval relevance и доля пустых ответов.",
+          "label": "SUPPORTED",
+          "overlap": 0.833,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q13",
+      "question": "Какие метрики качества отслеживаются ежедневно?",
+      "question_type": "factual",
+      "reference_answer": "Ежедневно на golden dataset отслеживаются hallucination rate, retrieval relevance и доля пустых ответов.",
+      "model_answer": "В ответе на ваш вопрос: ежедневно отслеживаются hallucination rate, retrieval relevance и доля пустых ответов.",
+      "latency_ms": 2339.865,
+      "input_tokens": 135,
+      "output_tokens": 31,
+      "request_id": "e61827db0bec"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Инцидент уровня SEV2 открывается при росте hallucination rate выше 6 процентов или при p95 выше 6 секунд дольше 15 минут.",
+          "label": "SUPPORTED",
+          "overlap": 0.812,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q14",
+      "question": "При каких условиях открывается инцидент SEV2?",
+      "question_type": "numeric",
+      "reference_answer": "SEV2 открывается при hallucination rate выше 6 процентов или при p95 выше 6 секунд дольше 15 минут.",
+      "model_answer": "Инцидент уровня SEV2 открывается при росте hallucination rate выше 6 процентов или при p95 выше 6 секунд дольше 15 минут.",
+      "latency_ms": 2380.477,
+      "input_tokens": 259,
+      "output_tokens": 39,
+      "request_id": "1bf293bdf13c"
+    },
+    {
+      "score": 0.75,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Системный промпт всегда сохраняется, даже при превышении контекста.",
+          "label": "SUPPORTED",
+          "overlap": 0.75,
+          "numeric_conflict": false
+        },
+        {
+          "claim": "Старые сообщения диалога обрезаются, чтобы поместиться в контекстной оконечке размером 8192 токена.",
+          "label": "PARTIALLY_SUPPORTED",
+          "overlap": 0.455,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 1,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q15",
+      "question": "Что происходит с системным промптом при переполнении контекста?",
+      "question_type": "factual",
+      "reference_answer": "При переполнении контекста системный промпт сохраняется всегда, обрезаются самые старые сообщения диалога.",
+      "model_answer": "Системный промпт всегда сохраняется, даже при превышении контекста. Старые сообщения диалога обрезаются, чтобы поместиться в контекстной оконечке размером 8192 токена.",
+      "latency_ms": 2460.075,
+      "input_tokens": 259,
+      "output_tokens": 51,
+      "request_id": "1027d89386a3"
+    },
+    {
+      "score": 0.0,
+      "hallucination": true,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "According to [kb-05], the higher latency budget for RAG endpoint is due to the additional complexity of retrieval and reranking, which requires more processing time.",
+          "label": "UNSUPPORTED",
+          "overlap": 0.062,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 1,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 1.0,
+      "id": "q16",
+      "question": "Почему у rag эндпоинта бюджет по latency выше, чем у chat?",
+      "question_type": "comparison",
+      "reference_answer": "У rag бюджет выше из-за этапов поиска и переранжирования документов перед вызовом модели.",
+      "model_answer": "According to [kb-05], the higher latency budget for RAG endpoint is due to the additional complexity of retrieval and reranking, which requires more processing time.",
+      "latency_ms": 2333.641,
+      "input_tokens": 261,
+      "output_tokens": 34,
+      "request_id": "ff8c2ab37892"
+    },
+    {
+      "score": 0.5,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Сокращение выходных токенов дешевле.",
+          "label": "PARTIALLY_SUPPORTED",
+          "overlap": 0.5,
+          "numeric_conflict": false
+        },
+        {
+          "claim": "Стоимость превышения выходных токенов составляет 8 долларов за миллион, в то время как кэш на FAQ не влияет на стоимость токенов.",
+          "label": "PARTIALLY_SUPPORTED",
+          "overlap": 0.538,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 2,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q17",
+      "question": "Что дешевле снижает счёт: кэш на FAQ или сокращение выходных токенов?",
+      "question_type": "comparison",
+      "reference_answer": "Оба способа снижают счёт: кэш убирает около 35 процентов FAQ запросов целиком, а выходные токены стоят 8 долларов за миллион, то есть в 4 раза дороже входных.",
+      "model_answer": "Сокращение выходных токенов дешевле. Стоимость превышения выходных токенов составляет 8 долларов за миллион, в то время как кэш на FAQ не влияет на стоимость токенов.",
+      "latency_ms": 2505.763,
+      "input_tokens": 300,
+      "output_tokens": 56,
+      "request_id": "b2712bd3fd1b"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": true,
+      "claims": [
+        {
+          "claim": "К сожалению, информация о скидках для партнёров из Казахстана не содержится в нашей базе знаний. Проверьте личный кабинет или обратитесь к нашим менеджерам для получения более подробной информации.",
+          "label": "SUPPORTED",
+          "overlap": 0.316,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q18",
+      "question": "Какая скидка действует для партнёров из Казахстана?",
+      "question_type": "out_of_scope",
+      "reference_answer": "В базе знаний нет данных о партнёрских скидках, корректный ответ сообщить об отсутствии информации.",
+      "model_answer": "К сожалению, информация о скидках для партнёров из Казахстана не содержится в нашей базе знаний. Проверьте личный кабинет или обратитесь к нашим менеджерам для получения более подробной информации.",
+      "latency_ms": 2532.935,
+      "input_tokens": 192,
+      "output_tokens": 59,
+      "request_id": "2054cdf7480f"
+    },
+    {
+      "score": 0.0,
+      "hallucination": true,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "SLA по аптайму не фиксирован в договоре, т.к. LLM-платформа не имеет официального SLA для аптайма.",
+          "label": "UNSUPPORTED",
+          "overlap": 0.4,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 1,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 1.0,
+      "id": "q19",
+      "question": "Какой SLA по аптайму зафиксирован в договоре?",
+      "question_type": "out_of_scope",
+      "reference_answer": "В базе знаний нет данных об SLA по аптайму, корректный ответ сообщить об отсутствии информации.",
+      "model_answer": "SLA по аптайму не фиксирован в договоре, т.к. LLM-платформа не имеет официального SLA для аптайма.",
+      "latency_ms": 2367.649,
+      "input_tokens": 294,
+      "output_tokens": 39,
+      "request_id": "3c1cde8f390f"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": true,
+      "claims": [
+        {
+          "claim": "Я не могу ответить на ваш вопрос, так как информация о количестве сотрудников в команде поддержки платформы не содержится в базе знаний.",
+          "label": "SUPPORTED",
+          "overlap": 0.429,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 1,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q20",
+      "question": "Сколько сотрудников в команде поддержки платформы?",
+      "question_type": "out_of_scope",
+      "reference_answer": "В базе знаний нет данных о численности команды поддержки, корректный ответ сообщить об отсутствии информации.",
+      "model_answer": "Я не могу ответить на ваш вопрос, так как информация о количестве сотрудников в команде поддержки платформы не содержится в базе знаний.",
+      "latency_ms": 2351.032,
+      "input_tokens": 269,
+      "output_tokens": 37,
+      "request_id": "58d9bfc888dc"
+    },
+    {
+      "score": 0.5,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Согласно базе знаний [kb-06], запрос не повторяется при ошибке 401.",
+          "label": "PARTIALLY_SUPPORTED",
+          "overlap": 0.5,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 0,
+        "PARTIALLY_SUPPORTED": 1,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q21",
+      "question": "Повторяется ли запрос при ошибке 401?",
+      "question_type": "factual",
+      "reference_answer": "Нет, при ошибках 400 и 401 повтор не выполняется.",
+      "model_answer": "Согласно базе знаний [kb-06], запрос не повторяется при ошибке 401.",
+      "latency_ms": 2256.468,
+      "input_tokens": 258,
+      "output_tokens": 23,
+      "request_id": "02274d93c42c"
+    },
+    {
+      "score": 1.0,
+      "hallucination": false,
+      "abstained": false,
+      "claims": [
+        {
+          "claim": "Стоимость миллиона выходных токенов составляет 8 долларов.",
+          "label": "SUPPORTED",
+          "overlap": 0.667,
+          "numeric_conflict": false
+        },
+        {
+          "claim": "Миллион входных токенов стоит 2 доллара, то есть это в 4 раза дешевле.",
+          "label": "SUPPORTED",
+          "overlap": 0.857,
+          "numeric_conflict": false
+        }
+      ],
+      "claim_counts": {
+        "SUPPORTED": 2,
+        "PARTIALLY_SUPPORTED": 0,
+        "UNSUPPORTED": 0,
+        "CONTRADICTED": 0
+      },
+      "unsupported_share": 0.0,
+      "id": "q22",
+      "question": "Сколько стоит миллион выходных токенов и во сколько раз это дороже входных?",
+      "question_type": "numeric",
+      "reference_answer": "Миллион выходных токенов стоит 8 долларов, это в 4 раза дороже входных токенов за 2 доллара.",
+      "model_answer": "Стоимость миллиона выходных токенов составляет 8 долларов. Миллион входных токенов стоит 2 доллара, то есть это в 4 раза дешевле.",
+      "latency_ms": 2429.575,
+      "input_tokens": 277,
+      "output_tokens": 47,
+      "request_id": "b07ea9a97093"
+    }
+  ],
+  "production_metrics": [
+    "hallucination_rate на сэмпле продового трафика",
+    "grounding rate: доля утверждений, подтверждённых контекстом",
+    "retrieval relevance, recall@k, доля запросов без релевантного чанка",
+    "доля ответов нет данных и доля пустых ответов",
+    "user feedback: тумблеры и жалобы на ответ",
+    "доля ответов с числами, которых нет в контексте"
+  ],
+  "incident": {
+    "facts": {
+      "hallucination_rate": {
+        "before": 0.03,
+        "after": 0.09
+      },
+      "retrieval_relevance": {
+        "before": 0.86,
+        "after": 0.59
+      },
+      "context_size_tokens": {
+        "before": 1200,
+        "after": 4500
+      },
+      "model": "без изменений",
+      "prompt": "без изменений"
+    },
+    "investigation": [
+      {
+        "change": "контекст вырос с 1.2k до 4.5k токенов",
+        "symptom": "hallucination rate вырос втрое, retrieval relevance упал на 27 пунктов",
+        "hypothesis": "увеличили top-k или размер чанка, в контекст попал шум, релевантный фрагмент утонул среди нерелевантных",
+        "metric_to_check": "top-k и размер чанка в конфиге retriever, средний score top-1, позиция релевантного чанка в контексте, recall@k",
+        "root_cause": "retriever отдаёт больше документов при той же точности, контекст размывается",
+        "mitigation": "вернуть top-k, добавить переранжирование и порог по score, обрезать чанки, вернуть цитирование источника в ответе"
+      },
+      {
+        "change": "модель и промпт не менялись",
+        "symptom": "качество упало без релиза модели",
+        "hypothesis": "проблема не в модели, а в данных на входе, то есть в retrieval",
+        "metric_to_check": "версия индекса и эмбеддера, дата переиндексации, объём корпуса",
+        "root_cause": "переиндексация или смена эмбеддера без прогона golden на retrieval",
+        "mitigation": "гейт на выкатку индекса: прогон retrieval-метрик перед переключением"
+      },
+      {
+        "change": "выросла доля длинных пользовательских запросов",
+        "symptom": "контекст раздувается ещё и за счёт самого запроса",
+        "hypothesis": "длинный запрос ухудшает поиск и вытесняет полезный контекст",
+        "metric_to_check": "длина запроса по перцентилям, корреляция длины и hallucination",
+        "root_cause": "нет нормализации запроса перед поиском",
+        "mitigation": "сжимать запрос перед retrieval, искать по извлечённым ключевым сущностям"
+      }
+    ],
+    "monitoring": [
+      "hallucination_rate по скользящему окну 1 час, алерт при значении выше 5 процентов",
+      "retrieval_relevance и recall@k, алерт при падении ниже 75 процентов",
+      "средний и p95 context_size, алерт при росте более чем на 50 процентов к baseline",
+      "доля ответов без ссылки на источник и доля ответов нет данных",
+      "ежедневный прогон golden dataset плюс canary после каждой выкатки индекса",
+      "связка алертов: рост context_size вместе с падением relevance открывает инцидент сразу"
+    ]
+  },
+  "method": {
+    "claim_split": "ответ режется на предложения и пункты списка",
+    "labels": [
+      "SUPPORTED",
+      "PARTIALLY_SUPPORTED",
+      "UNSUPPORTED",
+      "CONTRADICTED"
+    ],
+    "rule": "доля значимых слов утверждения, найденных в эталоне: от 0.6 SUPPORTED, от 0.3 PARTIALLY_SUPPORTED, ниже UNSUPPORTED; расхождение чисел или отрицания даёт CONTRADICTED",
+    "hallucination_rule": "есть CONTRADICTED, либо половина утверждений не подтверждена, либо score ниже 0.4",
+    "abstain_rule": "ответ вида нет данных считается отказом: на вопросе вне базы это правильный ответ, на вопросе из базы это промах, но не галлюцинация",
+    "limitations": "правило работает на пересечении слов, поэтому не видит перефразирование; на проде поверх этого нужен LLM-судья или NLI-модель"
+  }
+}

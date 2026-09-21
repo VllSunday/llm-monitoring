@@ -1,0 +1,289 @@
+{
+  "baseline": {
+    "language": {
+      "en": 0.7,
+      "ru": 0.2,
+      "kz": 0.1
+    },
+    "topic": {
+      "faq": 0.45,
+      "support": 0.3,
+      "research": 0.25
+    },
+    "query_length_tokens": 42
+  },
+  "production": {
+    "language": {
+      "en": 0.45,
+      "ru": 0.4,
+      "kz": 0.15
+    },
+    "topic": {
+      "faq": 0.2,
+      "support": 0.5,
+      "research": 0.3
+    },
+    "query_length_tokens": 118
+  },
+  "drift": {
+    "features": [
+      {
+        "feature": "query_length_tokens",
+        "type": "numeric",
+        "baseline_mean": 42.0,
+        "production_mean": 118.0,
+        "delta": 76.0,
+        "delta_pct": 181.0,
+        "effect_size": null,
+        "status": "alert"
+      },
+      {
+        "feature": "topic",
+        "type": "categorical",
+        "psi": 0.314,
+        "js_distance": 0.1961,
+        "total_variation": 0.25,
+        "baseline": {
+          "faq": 0.45,
+          "support": 0.3,
+          "research": 0.25
+        },
+        "production": {
+          "faq": 0.2,
+          "support": 0.5,
+          "research": 0.3
+        },
+        "shift_pp": {
+          "faq": -25.0,
+          "research": 5.0,
+          "support": 20.0
+        },
+        "top_shift": "faq",
+        "status": "alert"
+      },
+      {
+        "feature": "language",
+        "type": "categorical",
+        "psi": 0.2694,
+        "js_distance": 0.1822,
+        "total_variation": 0.25,
+        "baseline": {
+          "en": 0.7,
+          "ru": 0.2,
+          "kz": 0.1
+        },
+        "production": {
+          "en": 0.45,
+          "ru": 0.4,
+          "kz": 0.15
+        },
+        "shift_pp": {
+          "en": -25.0,
+          "kz": 5.0,
+          "ru": 20.0
+        },
+        "top_shift": "en",
+        "status": "alert"
+      }
+    ],
+    "status": "alert",
+    "thresholds": {
+      "psi_warn": 0.1,
+      "psi_alert": 0.25,
+      "length_warn_rel": 0.3
+    }
+  },
+  "sampled_check": {
+    "feature": "language_sampled",
+    "type": "categorical",
+    "psi": 0.2953,
+    "js_distance": 0.1906,
+    "total_variation": 0.2595,
+    "baseline": {
+      "en": 0.7005,
+      "ru": 0.2005,
+      "kz": 0.099
+    },
+    "production": {
+      "kz": 0.14,
+      "en": 0.441,
+      "ru": 0.419
+    },
+    "shift_pp": {
+      "en": -25.95,
+      "kz": 4.1,
+      "ru": 21.85
+    },
+    "top_shift": "en",
+    "status": "alert"
+  },
+  "live_traffic": {
+    "features": [
+      {
+        "feature": "language",
+        "type": "categorical",
+        "psi": 2.5875,
+        "js_distance": 0.5312,
+        "total_variation": 0.7067,
+        "baseline": {
+          "en": 0.7,
+          "ru": 0.2,
+          "kz": 0.1
+        },
+        "production": {
+          "ru": 0.9067,
+          "en": 0.08,
+          "kz": 0.0133
+        },
+        "shift_pp": {
+          "en": -62.0,
+          "kz": -8.67,
+          "ru": 70.67
+        },
+        "top_shift": "ru",
+        "status": "alert"
+      },
+      {
+        "feature": "topic",
+        "type": "categorical",
+        "psi": 0.6641,
+        "js_distance": 0.2824,
+        "total_variation": 0.3767,
+        "baseline": {
+          "faq": 0.45,
+          "support": 0.3,
+          "research": 0.25
+        },
+        "production": {
+          "faq": 0.8267,
+          "support": 0.0933,
+          "research": 0.08
+        },
+        "shift_pp": {
+          "faq": 37.67,
+          "research": -17.0,
+          "support": -20.67
+        },
+        "top_shift": "faq",
+        "status": "alert"
+      },
+      {
+        "feature": "query_length_tokens",
+        "type": "numeric",
+        "baseline_mean": 42.0,
+        "production_mean": 17.346666666666668,
+        "delta": -24.65,
+        "delta_pct": -58.7,
+        "effect_size": null,
+        "status": "warn"
+      }
+    ],
+    "status": "alert",
+    "thresholds": {
+      "psi_warn": 0.1,
+      "psi_alert": 0.25,
+      "length_warn_rel": 0.3
+    },
+    "sample_size": 75
+  },
+  "most_changed": [
+    {
+      "feature": "query_length_tokens",
+      "metric": "delta_pct",
+      "value": 181.0,
+      "status": "alert"
+    },
+    {
+      "feature": "topic",
+      "metric": "psi",
+      "value": 0.314,
+      "status": "alert"
+    },
+    {
+      "feature": "language",
+      "metric": "psi",
+      "value": 0.2694,
+      "status": "alert"
+    }
+  ],
+  "thresholds_rationale": {
+    "psi_warn": "0.1 - заметный сдвиг, ставим тикет и смотрим сегменты",
+    "psi_alert": "0.25 - распределение поменялось, нужен прогон обновлённого golden",
+    "length_warn_rel": "0.3 - рост средней длины запроса на 30 процентов меняет и стоимость, и качество",
+    "window": "скользящее окно 24 часа против baseline за последние 30 дней",
+    "min_sample": "не считаем PSI на выборке меньше 200 запросов"
+  },
+  "incident": {
+    "facts": {
+      "production_quality": {
+        "before": 0.91,
+        "after": 0.82
+      },
+      "golden_dataset_quality": {
+        "before": 0.91,
+        "after": 0.9
+      }
+    },
+    "reading": "golden почти не изменился, значит сама модель на старых данных работает как раньше, проблема в новом продовом трафике или в том, что вокруг модели",
+    "hypotheses": [
+      {
+        "hypothesis": "Сменился состав трафика, golden dataset его не покрывает",
+        "why": "support вырос с 30 до 50 процентов, ru с 20 до 40, длина запроса выросла в 2.8 раза, а golden остался на старом распределении",
+        "metrics_to_check": [
+          "quality в разрезе language и topic, а не в целом",
+          "PSI по language, topic и длине запроса по дням",
+          "доля запросов, у которых нет похожего примера в golden dataset",
+          "покрытие golden dataset по сегментам продового трафика"
+        ],
+        "confirms_if": "падение качества сосредоточено в ru и support, в en и faq качество прежнее"
+      },
+      {
+        "hypothesis": "Деградировал retrieval на новых длинных запросах",
+        "why": "длинный запрос размывает поисковый запрос, top-k возвращает нерелевантные чанки",
+        "metrics_to_check": [
+          "retrieval relevance и recall@k по сегментам",
+          "средний score top-1 и доля запросов без релевантного чанка",
+          "доля ответов без ссылок на контекст",
+          "корреляция длины запроса и оценки качества"
+        ],
+        "confirms_if": "relevance падает вместе с ростом длины запроса, quality коррелирует с relevance"
+      },
+      {
+        "hypothesis": "Контекст переполняется и обрезается",
+        "why": "длинные запросы плюс история диалога упираются в лимит окна",
+        "metrics_to_check": [
+          "доля запросов с truncation и средний context size",
+          "распределение input_tokens по перцентилям",
+          "доля ответов вида нет данных"
+        ],
+        "confirms_if": "доля truncation выросла синхронно с падением качества"
+      },
+      {
+        "hypothesis": "Изменился способ измерения качества в проде",
+        "why": "golden прогоняется автоматически и почти не изменился, продовая оценка зависит от разметчиков и выборки",
+        "metrics_to_check": [
+          "состав и объём выборки для оценки, доля новых разметчиков",
+          "согласованность оценок между разметчиками",
+          "версия промпта LLM-судьи, если оценка автоматическая"
+        ],
+        "confirms_if": "при переразметке старой выборки новым процессом качество тоже падает"
+      },
+      {
+        "hypothesis": "Изменилось окружение инференса, хотя модель и промпт формально те же",
+        "why": "квантование, версия рантайма или роутинг на другой пул могли поменяться",
+        "metrics_to_check": [
+          "версия рантайма и хэш весов по запросам",
+          "распределение quality по инстансам и зонам",
+          "latency и tokens per second по пулам"
+        ],
+        "confirms_if": "качество падает только на части инстансов"
+      }
+    ],
+    "priority_checks": [
+      "разложить продовое качество по language, topic и длине запроса",
+      "сравнить retrieval relevance до и после по тем же сегментам",
+      "посчитать PSI по дням и найти день, когда началось расхождение",
+      "проверить покрытие golden dataset новыми сегментами и дополнить его"
+    ]
+  }
+}

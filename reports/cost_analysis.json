@@ -1,0 +1,222 @@
+{
+  "prices": {
+    "input_per_1m": 2.0,
+    "output_per_1m": 8.0
+  },
+  "assumptions": {
+    "requests_per_day": 10000,
+    "days_per_month": 30
+  },
+  "single_request_measured": {
+    "input_tokens": 818,
+    "output_tokens": 59,
+    "per_request": 0.002108,
+    "input_share": 0.7760910815939279,
+    "output_share": 0.22390891840607208,
+    "per_1k_requests": 2.108,
+    "per_day": 21.080000000000002,
+    "per_month": 632.4
+  },
+  "typical_chat_request": {
+    "input_tokens": 700,
+    "output_tokens": 150,
+    "per_request": 0.0026,
+    "input_share": 0.5384615384615384,
+    "output_share": 0.4615384615384615,
+    "per_1k_requests": 2.6,
+    "per_day": 26.0,
+    "per_month": 780.0
+  },
+  "context_experiment": [
+    {
+      "context_size": 500,
+      "runs": 3,
+      "avg_input_tokens": 818,
+      "avg_output_tokens": 58.3,
+      "avg_latency_ms": 2562.4,
+      "avg_cost_usd": 0.00210267,
+      "cost_per_1k_requests": 2.1027
+    },
+    {
+      "context_size": 1000,
+      "runs": 3,
+      "avg_input_tokens": 1325,
+      "avg_output_tokens": 68,
+      "avg_latency_ms": 2607.5,
+      "avg_cost_usd": 0.003194,
+      "cost_per_1k_requests": 3.194
+    },
+    {
+      "context_size": 2000,
+      "runs": 3,
+      "avg_input_tokens": 2349,
+      "avg_output_tokens": 69,
+      "avg_latency_ms": 2689.7,
+      "avg_cost_usd": 0.00525,
+      "cost_per_1k_requests": 5.25
+    },
+    {
+      "context_size": 4000,
+      "runs": 3,
+      "avg_input_tokens": 4431,
+      "avg_output_tokens": 112,
+      "avg_latency_ms": 3138.1,
+      "avg_cost_usd": 0.009758,
+      "cost_per_1k_requests": 9.758
+    }
+  ],
+  "endpoints": {
+    "naive": [
+      {
+        "requests": 50000,
+        "avg_input": 700,
+        "avg_output": 150,
+        "calls_per_request": 1.0,
+        "cost_per_request": 0.0026,
+        "total_cost": 130.0,
+        "input_cost": 70.0,
+        "output_cost": 59.99999999999999,
+        "endpoint": "chat",
+        "share": 0.3792
+      },
+      {
+        "requests": 10000,
+        "avg_input": 4200,
+        "avg_output": 500,
+        "calls_per_request": 1.0,
+        "cost_per_request": 0.0124,
+        "total_cost": 124.0,
+        "input_cost": 84.0,
+        "output_cost": 40.0,
+        "endpoint": "rag",
+        "share": 0.3617
+      },
+      {
+        "requests": 5000,
+        "avg_input": 1200,
+        "avg_output": 300,
+        "calls_per_request": 1.0,
+        "cost_per_request": 0.0048,
+        "total_cost": 23.999999999999996,
+        "input_cost": 11.999999999999998,
+        "output_cost": 11.999999999999998,
+        "endpoint": "summary",
+        "share": 0.07
+      },
+      {
+        "requests": 2000,
+        "avg_input": 9000,
+        "avg_output": 1800,
+        "calls_per_request": 1.0,
+        "cost_per_request": 0.0324,
+        "total_cost": 64.8,
+        "input_cost": 36.0,
+        "output_cost": 28.8,
+        "endpoint": "agent",
+        "share": 0.189
+      }
+    ],
+    "with_agent_fanout": [
+      {
+        "requests": 50000,
+        "avg_input": 700,
+        "avg_output": 150,
+        "calls_per_request": 1.0,
+        "cost_per_request": 0.0026,
+        "total_cost": 130.0,
+        "input_cost": 70.0,
+        "output_cost": 59.99999999999999,
+        "endpoint": "chat",
+        "calls_low": 1.0,
+        "calls_high": 1.0,
+        "cost_low": 130.0,
+        "cost_high": 130.0,
+        "share": 0.195
+      },
+      {
+        "requests": 10000,
+        "avg_input": 4200,
+        "avg_output": 500,
+        "calls_per_request": 1.0,
+        "cost_per_request": 0.0124,
+        "total_cost": 124.0,
+        "input_cost": 84.0,
+        "output_cost": 40.0,
+        "endpoint": "rag",
+        "calls_low": 1.0,
+        "calls_high": 1.0,
+        "cost_low": 124.0,
+        "cost_high": 124.0,
+        "share": 0.186
+      },
+      {
+        "requests": 5000,
+        "avg_input": 1200,
+        "avg_output": 300,
+        "calls_per_request": 1.0,
+        "cost_per_request": 0.0048,
+        "total_cost": 23.999999999999996,
+        "input_cost": 11.999999999999998,
+        "output_cost": 11.999999999999998,
+        "endpoint": "summary",
+        "calls_low": 1.0,
+        "calls_high": 1.0,
+        "cost_low": 23.999999999999996,
+        "cost_high": 23.999999999999996,
+        "share": 0.036
+      },
+      {
+        "requests": 2000,
+        "avg_input": 9000,
+        "avg_output": 1800,
+        "calls_per_request": 6,
+        "cost_per_request": 0.1944,
+        "total_cost": 388.79999999999995,
+        "input_cost": 215.99999999999997,
+        "output_cost": 172.8,
+        "endpoint": "agent",
+        "calls_low": 5,
+        "calls_high": 7,
+        "cost_low": 323.99999999999994,
+        "cost_high": 453.6,
+        "share": 0.5831
+      }
+    ],
+    "total_naive": 342.8,
+    "total_with_fanout": 666.8,
+    "fanout_overhead": 324.0,
+    "cost_leak": {
+      "endpoint": "agent",
+      "share_of_total": 0.5831,
+      "reason": "agent даёт 2000 запросов из 67000, это 3 процента трафика, но из-за 5-7 вызовов на запрос и 9000 входных токенов забирает наибольшую долю счёта",
+      "second_source": "rag: 4200 входных токенов на запрос при 10000 запросов"
+    }
+  },
+  "optimizations": [
+    {
+      "action": "Кэш ответов по хэшу нормализованного промпта на FAQ-трафике",
+      "effect": "около 35 процентов chat-запросов не доходят до модели",
+      "estimate": "минус 17-18 процентов счёта chat-эндпоинта"
+    },
+    {
+      "action": "Ограничить фанаут агента: максимум 2-3 вызова и бюджет токенов на задачу",
+      "effect": "агент перестаёт быть основным источником расходов",
+      "estimate": "минус 55-60 процентов стоимости agent-эндпоинта"
+    },
+    {
+      "action": "Сжать RAG-контекст: top-3 вместо top-10, переранжирование и обрезка чанков",
+      "effect": "входные токены rag падают с 4200 до 1500-1800",
+      "estimate": "минус 55 процентов входной стоимости rag"
+    },
+    {
+      "action": "Ограничить max_tokens и требовать короткий формат ответа",
+      "effect": "выходные токены стоят в 4 раза дороже входных",
+      "estimate": "минус 20-30 процентов на summary и chat"
+    },
+    {
+      "action": "Роутинг по сложности: дешёвая модель на FAQ, дорогая на research",
+      "effect": "дорогая модель остаётся только там, где она нужна",
+      "estimate": "минус 25-40 процентов общего счёта"
+    }
+  ]
+}
