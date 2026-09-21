@@ -168,15 +168,21 @@ def main() -> None:
 
     storage.init_db()
     if args.recalc:
+        # Восстанавливаем размер контекста по рангу входных токенов: точки эксперимента
+        # разнесены достаточно далеко, чтобы группы не перемешались
         rows = storage.fetch(scenario=SCENARIO)
-        for row in rows:
-            row["context_size"] = min(CONTEXT_SIZES,
-                                      key=lambda s: abs(row["input_tokens"] - s))
+        ordered = sorted(rows, key=lambda r: r["input_tokens"])
+        per_size = max(1, len(ordered) // len(CONTEXT_SIZES))
+        for index, row in enumerate(ordered):
+            row["context_size"] = CONTEXT_SIZES[min(index // per_size, len(CONTEXT_SIZES) - 1)]
+        rows = sorted(rows, key=lambda r: r["timestamp"])
     else:
         rows = run_context_experiment(args.repeats, args.num_predict)
 
     aggregated = aggregate_context(rows)
-    sample = rows[0] if rows else None
+    # За эталонный берём запрос с минимальным контекстом, чтобы цифра не прыгала между прогонами
+    base_size = min(CONTEXT_SIZES)
+    sample = next((r for r in rows if r.get("context_size") == base_size), None)
     measured = pricing.breakdown(
         int(sample["input_tokens"]) if sample else 700,
         int(sample["output_tokens"]) if sample else 150,
