@@ -1,0 +1,5 @@
+endpoint,requests,avg_input,avg_output
+chat,50000,700,150
+rag,10000,4200,500
+summary,5000,1200,300
+agent,2000,9000,1800
