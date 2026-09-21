@@ -1,0 +1,146 @@
+[
+  {
+    "endpoint": "chat",
+    "prompt": "Что такое p95 latency и чем он полезнее среднего?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Объясни в двух предложениях, что такое токен."
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "How do I reduce LLM response cost?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Дай короткий чеклист перед выкаткой LLM-сервиса в прод."
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "What is a prompt template?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Почему кэш ответов помогает на FAQ-трафике?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Назови три метрики для дашборда LLM-сервиса."
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Summarize why tail latency matters for user experience."
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Қызмет лимиттері қандай?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Чем p99 отличается от максимума?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Сколько стоит миллион входных токенов?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Какие лимиты по запросам в минуту?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Что означает ошибка 429 и что с ней делать?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Сколько хранятся логи телеметрии?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "What is the latency target for the chat endpoint?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Какой TTL у кэша ответов?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Что нужно для подключения к API?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Какие метрики входят в ежедневный прогон golden dataset?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Когда открывается инцидент SEV2?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Что происходит при превышении контекстного окна?"
+  },
+  {
+    "endpoint": "summary",
+    "prompt": "Сократи до трёх пунктов: сервис упал по таймауту, retrieval вернул мусор, пользователи жалуются на медленные ответы."
+  },
+  {
+    "endpoint": "summary",
+    "prompt": "Сделай краткую выжимку про политику повторов запросов."
+  },
+  {
+    "endpoint": "summary",
+    "prompt": "Summarize the retry policy in one sentence."
+  },
+  {
+    "endpoint": "summary",
+    "prompt": "Сократи описание инцидента: рост hallucination rate с 3 до 9 процентов после смены индекса."
+  },
+  {
+    "endpoint": "summary",
+    "prompt": "Кратко: почему streaming не уменьшает полное время генерации."
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Сервис отвечает 500, что проверить в первую очередь?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Запросы падают с таймаутом, куда смотреть?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "I keep getting 401, what is wrong?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "После обновления ответы стали пустыми, что делать?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Ошибка 400 при отправке длинного промпта, в чём причина?"
+  },
+  {
+    "endpoint": "agent",
+    "prompt": "Собери план оптимизации стоимости для rag-эндпоинта."
+  },
+  {
+    "endpoint": "agent",
+    "prompt": "Составь план расследования роста p99 latency."
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Зачем нужен golden dataset, если есть продовые метрики?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Какие алерты я бы поставил на LLM-сервис в первую неделю?"
+  },
+  {
+    "endpoint": "rag",
+    "prompt": "Сколько дней бесплатна песочница?"
+  },
+  {
+    "endpoint": "chat",
+    "prompt": "Повторять ли запрос при ошибке 400?"
+  }
+]
